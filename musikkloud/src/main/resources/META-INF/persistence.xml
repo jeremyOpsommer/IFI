@@ -3,9 +3,11 @@
 <persistence-unit name="persistenceUnit" transaction-type="RESOURCE_LOCAL">
   <provider>org.hibernate.ejb.HibernatePersistence</provider>
   <class>musikkloud.model.Musique</class>
+  <class>musikkloud.model.Pub</class>
   <class>musikkloud.model.Note</class>
   <class>musikkloud.model.NotePK</class>
   <class>musikkloud.model.User</class>
+  <class>musikkloud.model.UserRole</class>
     <properties>
         <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
         <property name="hibernate.hbm2ddl.auto" value="validate"/>

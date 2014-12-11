@@ -6,45 +6,43 @@ import java.util.List;
 
 
 /**
- * The persistent class for the user database table.
+ * The persistent class for the users database table.
  * 
  */
 @Entity
+@Table(name="users")
 @NamedQuery(name="User.findAll", query="SELECT u FROM User u")
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="id_user")
-	private int idUser;
+	private String username;
 
-	private String nom;
+	private byte enabled;
 
 	private String password;
 
-	private int permission;
-
 	//bi-directional many-to-one association to Note
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="userBean")
 	private List<Note> notes;
 
 	public User() {
 	}
 
-	public int getIdUser() {
-		return this.idUser;
+	public String getUsername() {
+		return this.username;
 	}
 
-	public void setIdUser(int idUser) {
-		this.idUser = idUser;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
-	public String getNom() {
-		return this.nom;
+	public byte getEnabled() {
+		return this.enabled;
 	}
 
-	public void setNom(String nom) {
-		this.nom = nom;
+	public void setEnabled(byte enabled) {
+		this.enabled = enabled;
 	}
 
 	public String getPassword() {
@@ -53,14 +51,6 @@ public class User implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public int getPermission() {
-		return this.permission;
-	}
-
-	public void setPermission(int permission) {
-		this.permission = permission;
 	}
 
 	public List<Note> getNotes() {
@@ -73,14 +63,14 @@ public class User implements Serializable {
 
 	public Note addNote(Note note) {
 		getNotes().add(note);
-		note.setUser(this);
+		note.setUserBean(this);
 
 		return note;
 	}
 
 	public Note removeNote(Note note) {
 		getNotes().remove(note);
-		note.setUser(null);
+		note.setUserBean(null);
 
 		return note;
 	}
