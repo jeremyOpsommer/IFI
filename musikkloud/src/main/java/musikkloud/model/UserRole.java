@@ -1,36 +1,33 @@
 package musikkloud.model;
 
-import java.io.Serializable;
-import javax.persistence.*;
+public class UserRole {
 
-
-/**
- * The persistent class for the user_roles database table.
- * 
- */
-@Entity
-@Table(name="user_roles")
-@NamedQuery(name="UserRole.findAll", query="SELECT u FROM UserRole u")
-public class UserRole implements Serializable {
-	private static final long serialVersionUID = 1L;
-
-	@Id
-	@Column(name="user_role_id")
-	private int userRoleId;
-
+	private Integer userRoleId;
+	private User user;
 	private String role;
-
-	private String username;
 
 	public UserRole() {
 	}
 
-	public int getUserRoleId() {
+	public UserRole(User user, String role) {
+		this.user = user;
+		this.role = role;
+	}
+
+	public Integer getUserRoleId() {
 		return this.userRoleId;
 	}
 
-	public void setUserRoleId(int userRoleId) {
+	public void setUserRoleId(Integer userRoleId) {
 		this.userRoleId = userRoleId;
+	}
+
+	public User getUser() {
+		return this.user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public String getRole() {
@@ -39,14 +36,6 @@ public class UserRole implements Serializable {
 
 	public void setRole(String role) {
 		this.role = role;
-	}
-
-	public String getUsername() {
-		return this.username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
 	}
 
 }
